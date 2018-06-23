@@ -5,7 +5,7 @@
  */
 #include "LedControl.h"
 
-LedControl lc=LedControl(D7,D5,D2,1); //DIN: D7, CLD: D5, CS: D2
+LedControl lc=LedControl(D7,D5,D2,1); //DIN: D7, CLK: D5, CS: D2
 int number = 0;
 String stringNumber;
 char message[8];

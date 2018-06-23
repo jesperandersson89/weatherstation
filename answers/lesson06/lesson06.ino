@@ -2,13 +2,21 @@
  * @author: Nikhil André Luthra - Bouvet Norge
  * @web: weather.labben.org
  * @web: bouvet.no / nikhil.luthra.no
- * Lesson 05 - Connect to WiFi and read weather data
+ * Lesson 06 - Connect it all together!
  */
 #include <ESP8266WiFi.h> 
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>  
 #include <ArduinoJson.h>
+#include "LedControl.h"
+#include <Servo.h> 
+
+Servo myServo;
+int servoPosition;
+
+LedControl lc=LedControl(D7,D5,D2,1); //DIN: D7, CLK: D5, CS: D2
+char message[8];
 
 WiFiClient client;
 char* host = "weather.labben.org";
@@ -22,8 +30,70 @@ void setup() {
   wifiManager.autoConnect("WeatherStation");
 
   Serial.println("Connected to WiFi");
+
+  lc.shutdown(0,false);   // Enable display
+  lc.setIntensity(0,15);  // Set brightness level (0 is min, 15 is max)
+  
+  writeToSegmentDisplay("Hello   ");
+
+  delay(2000);
+
+  myServo.attach(D3);
+  delay(200);
+  servoPosition = 90;
+  myServo.write(servoPosition); 
+
+  myServo.detach();
 }
 
+
+void writeToSegmentDisplay(char text[8]){
+  lc.clearDisplay(0);
+  
+  for(int i=0; i<8; i++){
+    lc.setChar(0,7-i,text[i],false);
+  }
+}
+
+void moveServo(String symbolName){
+  
+  
+  int newPosition = 0;
+
+  if(symbolName == "Lettskyet" || symbolName == "Sol" || symbolName == "Klarvær"){
+    newPosition = 100;
+  }else if(symbolName == "Skyet"){
+    newPosition = 170;
+  }else if(symbolName == "Lette regnbyger" || symbolName == "Regnbyger" || symbolName == "Kraftige regnbyger" || symbolName == "Lette regnbyger og torden"){
+    newPosition = 70;
+  }
+
+  
+  if(newPosition != servoPosition){
+    
+    myServo.attach(D3);
+    
+    delay(200);
+  
+    if(servoPosition < newPosition){
+      for(servoPosition; servoPosition < newPosition; servoPosition += 1) 
+      {                                  
+        myServo.write(servoPosition);              
+        delay(15);                       
+      }
+    }else if(servoPosition > newPosition){
+      for(servoPosition; servoPosition > newPosition; servoPosition-=1)     
+      {                                
+        myServo.write(servoPosition);              
+        delay(15);                       
+      }
+    }  
+
+   
+     myServo.detach();
+
+   }
+}
 
 void doRequest(String location){
       if (!client.connect(host, httpPort)) {
@@ -64,17 +134,33 @@ void doRequest(String location){
             Serial.println("parseObject() failed");
           }else{
             const String statusText = root["status"];
-            const String text = root["symbolName"];
+            const String symbolName = root["symbolName"];
             const String rain = root["rain"];
             const String tempType = root["temptype"];
             const String temp = root["temp"];
             
-            Serial.println(statusText);
-            Serial.println(text);
+            Serial.println(symbolName);
             Serial.println(rain);
             Serial.println(tempType);
             Serial.println(temp);
             
+            String val = temp;
+            if(tempType == "minus"){
+              val = "-" + temp; 
+            }
+            
+            char textArr[8];
+            val.toCharArray(textArr, 8);
+            int i = val.length();
+            for(i; i<8; i++){
+              textArr[i] = ' ';
+            }
+            
+            writeToSegmentDisplay(textArr);
+
+            delay(100);
+
+            moveServo(symbolName);
 
            }
         
@@ -82,7 +168,10 @@ void doRequest(String location){
 }
 
 void loop() {
+
+  delay(1000);
+
   doRequest("Norge/Oslo/Oslo/Oslo");
-  
+
   delay(10000);
 }

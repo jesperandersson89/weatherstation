@@ -11,6 +11,7 @@ IoT kurs med introduksjon til ESP8266, servo, 7-segment display og værapi.
 3. Hello display
 4. Hello WiFiManager
 5. Hello Weather API 
+6. Combine everything you have learned!
 
 # Hardware
 - ESP8266
@@ -26,6 +27,9 @@ IoT kurs med introduksjon til ESP8266, servo, 7-segment display og værapi.
 - This course uses weather data from Yr.no, but with a custom endpoint that just returns the data we are looking for. Probably not usable for anything else than this. The endpoint has a 20 minute cache in place.
 Url: http://weather.labben.org/api/yr/?location=**enter location from yr.no**
 Example url: http://weather.labben.org/api/yr/?location=Norge/Oslo/Oslo/Oslo/
+
+# Extra
+Weather symbols and texts: https://om.yr.no/symbol/
 
 # Contact
 
