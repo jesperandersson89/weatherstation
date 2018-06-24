@@ -12,6 +12,10 @@
 #include "LedControl.h"
 #include <Servo.h> 
 
+
+
+//Oppgave: bruk ALT du har lært frem til nå for å koble sammen skjerm, servo og henting av data!!
+
 Servo myServo;
 int servoPosition;
 
@@ -43,6 +47,7 @@ void setup() {
   servoPosition = 90;
   myServo.write(servoPosition); 
 
+  //ProTip: detach servoen når du ikke bruker den. Det gjør den mindre utsatt for signalstøy og jitters.
   myServo.detach();
 }
 
@@ -59,17 +64,23 @@ void moveServo(String symbolName){
   
   
   int newPosition = 0;
-
+  //Info: symbolnavna kommer fra Yr: https://om.yr.no/symbol/
+  //Oppgave: sett newPosition til rett posisjon i forhold til hvor du vil ha pekeren på skyen.
+  //Du kan også bytte ut hvilke symbolNavn du støtter, legge til flere/færre etc.
+  
   if(symbolName == "Lettskyet" || symbolName == "Sol" || symbolName == "Klarvær"){
-    newPosition = 100;
+    
   }else if(symbolName == "Skyet"){
-    newPosition = 170;
+    
   }else if(symbolName == "Lette regnbyger" || symbolName == "Regnbyger" || symbolName == "Kraftige regnbyger" || symbolName == "Lette regnbyger og torden"){
-    newPosition = 70;
+    
   }
 
   
-  if(newPosition != servoPosition){
+  //Oppgave: vi vil kun kjøre koden under hvis det er endring i symbol/posisjon.
+  //         Ingen vits å attache servoen om den ikke skal flyttes.
+
+
     
     myServo.attach(D3);
     
@@ -82,17 +93,15 @@ void moveServo(String symbolName){
         delay(15);                       
       }
     }else if(servoPosition > newPosition){
-      for(servoPosition; servoPosition > newPosition; servoPosition-=1)     
-      {                                
-        myServo.write(servoPosition);              
-        delay(15);                       
-      }
+      //Oppgave: for-løkke for å flytte servoen om nye posisjonen er lavere enn der vi allerede er.
+
+      
     }  
 
    
      myServo.detach();
 
-   }
+   
 }
 
 void doRequest(String location){
@@ -139,13 +148,8 @@ void doRequest(String location){
             const String tempType = root["temptype"];
             const String temp = root["temp"];
             
-            Serial.println(symbolName);
-            Serial.println(rain);
-            Serial.println(tempType);
-            Serial.println(temp);
-            
             char textArr[8];
-            val.toCharArray(textArr, 8);
+            temp.toCharArray(textArr, 8);
             int i = val.length();
             for(i; i<8; i++){
               textArr[i] = ' ';
@@ -154,7 +158,7 @@ void doRequest(String location){
             writeToSegmentDisplay(textArr);
 
             delay(100);
-
+            
             moveServo(symbolName);
 
            }
@@ -166,7 +170,8 @@ void loop() {
 
   delay(1000);
 
-  doRequest("Norge/Oslo/Oslo/Oslo");
+  //Oppgave: Fyll ut sted
+  doRequest();
 
   delay(10000);
 }
