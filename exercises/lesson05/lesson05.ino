@@ -61,7 +61,7 @@ void doRequest(String location){
          
          
          
-         //Oppgave: kall parseObject rett på client
+         //Oppgave: kall parseObject med client som argument.
          JsonObject& root = 
          
           if(!root.success()) {
