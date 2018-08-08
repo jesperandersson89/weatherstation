@@ -145,8 +145,8 @@ void doRequest(String location){
             Serial.println(temp);
             
             char textArr[8];
-            val.toCharArray(textArr, 8);
-            int i = val.length();
+            temp.toCharArray(textArr, 8);
+            int i = temp.length();
             for(i; i<8; i++){
               textArr[i] = ' ';
             }
