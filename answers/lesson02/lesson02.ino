@@ -12,6 +12,10 @@ void setup() {
   
   // Oppgave: Attach servo på Pin D2 til servoobjektet
   myServo.attach(D2);
+  delay(100);
+  myServo.write(90);         
+
+  delay(5000);
 }
 
 void loop() {
