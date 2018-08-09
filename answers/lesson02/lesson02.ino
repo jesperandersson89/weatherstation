@@ -10,8 +10,8 @@
  
 void setup() {
   
-  // Oppgave: Attach servo på Pin D2 til servoobjektet
-  myServo.attach(D2);
+  // Oppgave: Attach servo på Pin D3 til servoobjektet
+  myServo.attach(D3);
   delay(100);
   myServo.write(90);         
 

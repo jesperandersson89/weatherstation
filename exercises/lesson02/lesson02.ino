@@ -11,7 +11,7 @@
  
 void setup() {
   
-  // Oppgave: Attach servo på Pin D2 til servoobjektet
+  // Oppgave: Attach servo på Pin D3 til servoobjektet
 
 
   delay(100);
