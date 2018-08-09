@@ -150,7 +150,7 @@ void doRequest(String location){
             
             char textArr[8];
             temp.toCharArray(textArr, 8);
-            int i = val.length();
+            int i = temp.length();
             for(i; i<8; i++){
               textArr[i] = ' ';
             }
