@@ -8,7 +8,7 @@
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>  
-#include <ArduinoJson.h>
+#include <ArduinoJson.h> //minimum ver. 6.9.0
 
 WiFiClient client;
 char* host = "weather.labben.org";
@@ -57,17 +57,18 @@ void doRequest(String location){
             return;
           }
   
-         DynamicJsonBuffer jsonBuffer(250);
+          DynamicJsonDocument jsonDocument(250);
          
-         JsonObject& root = jsonBuffer.parseObject(client);
-          if(!root.success()) {
+          deserializeJson(jsonDocument, client);
+         
+          if(!jsonDocument.containsKey("status")) {
             Serial.println("parseObject() failed");
           }else{
-            const String statusText = root["status"];
-            const String text = root["symbolName"];
-            const String rain = root["rain"];
-            const String tempType = root["temptype"];
-            const String temp = root["temp"];
+            const String statusText = jsonDocument["status"];
+            const String text = jsonDocument["symbolName"];
+            const String rain = jsonDocument["rain"];
+            const String tempType = jsonDocument["temptype"];
+            const String temp = jsonDocument["temp"];
             
             Serial.println(statusText);
             Serial.println(text);
