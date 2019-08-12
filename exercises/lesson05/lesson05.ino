@@ -57,18 +57,19 @@ void doRequest(String location){
             return;
           }
 
-         //Oppgave: Opprett DynamicJsonBuffer med størrelse på 250bytes.
+         //Oppgave: Opprett DynamicJsonDocument med størrelse på 250bytes.
          
          
          
-         //Oppgave: kall parseObject med client som argument.
-         JsonObject& root = 
+         //Oppgave: kall deserializeJson med jsonDocument og client som argument.
          
-          if(!root.success()) {
+        
+         //Oppgave: forsikkre deg om at jsonDocument inneholder "status"
+          if(!jsonDocument.containsKey(?????)) {
             Serial.println("parseObject() failed");
           }else{
 
-            //Oppgave: les og skriv ut resultatet fra rootobjektet. Sjekk URLen vi kaller i nettleseren for å se hva du får i retur fra server.
+            //Oppgave: les og skriv ut resultatet fra jsonDocument. Sjekk URLen vi kaller i nettleseren for å se hva du får i retur fra server.
             
             
             
