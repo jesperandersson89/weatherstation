@@ -10,6 +10,8 @@
 #include <WiFiManager.h>  
 #include <ArduinoJson.h>
 
+//Oppgave: inkluder ArduinoJson biblioteket fra Benoit Blanchon. (minimum version 6.9.0)
+
 WiFiClient client;
 char* host = "weather.labben.org";
 const int httpPort = 80;
@@ -57,14 +59,15 @@ void doRequest(String location){
             return;
           }
 
-         //Oppgave: Opprett DynamicJsonBuffer med størrelse på 250bytes.
+         //Oppgave: Opprett DynamicJsonDocument med størrelse på 250bytes. (https://arduinojson.org/v6/doc/)
          
          
          
-         //Oppgave: kall parseObject med client som argument.
-         JsonObject& root = 
+         //Oppgave: kall deserializeJson med root og client som argument.
          
-          if(!root.success()) {
+         
+         //Oppgave: forsikkre deg om at "status", finnes i rootobjektet
+          if(!root.containsKey(????)) {
             Serial.println("parseObject() failed");
           }else{
 
