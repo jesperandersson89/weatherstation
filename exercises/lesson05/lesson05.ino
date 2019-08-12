@@ -10,6 +10,8 @@
 #include <WiFiManager.h>  
 #include <ArduinoJson.h>
 
+//Oppgave: inkluder ArduinoJson biblioteket fra Benoît Blanchon
+
 WiFiClient client;
 char* host = "weather.labben.org";
 const int httpPort = 80;
