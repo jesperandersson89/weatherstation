@@ -39,6 +39,6 @@ void loop() {
 
 
   //Oppgaven er bestått når servoen flytter seg fra 0 til 180 og tilbake ved å ha vingen pekende oppover mot skya hele tiden. 
-  //Hvis servoens vinge peker nedover, må du snu servoen. 
+  //Hvis servoens vinge peker nedover, må du snu vingen. 
   
 }
