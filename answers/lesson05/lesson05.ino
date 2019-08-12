@@ -68,12 +68,14 @@ void doRequest(String location){
             const String rain = root["rain"];
             const String tempType = root["temptype"];
             const String temp = root["temp"];
+            const string time = jsonDocument["time"];
             
             Serial.println(statusText);
             Serial.println(text);
             Serial.println(rain);
             Serial.println(tempType);
             Serial.println(temp);
+            Serial.println(time);
             
 
            }
