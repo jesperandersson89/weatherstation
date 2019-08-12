@@ -15,7 +15,7 @@ void setup() {
   //Oppgave: opprett WiFiManager objekt.
   
 
-  //Oppgave: kall autoConnect på WiFiManager objektet over, og bruk en unik SSID. Passord er valgfritt.
+  //Oppgave: kall autoConnect på WiFiManager objektet over, og bruk en unik SSID (feks "Nikhils weatherstation"). Passord er valgfritt.
   
 
 
