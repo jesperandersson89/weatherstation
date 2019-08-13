@@ -31,5 +31,5 @@ void setup() {
 
 void loop() {
   // Oppgave: Skriv tall til display hvert sekund
-  // TODO: nikhil fiks en bedre måte enn den stygge hacken i answers.  
+  
 }
