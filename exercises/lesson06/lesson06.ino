@@ -136,17 +136,22 @@ void doRequest(String location){
             return;
           }
   
-         DynamicJsonBuffer jsonBuffer(250);
+          DynamicJsonDocument jsonDocument(250);
          
-         JsonObject& root = jsonBuffer.parseObject(client);
-          if(!root.success()) {
+          deserializeJson(jsonDocument, client);
+          if(!jsonDocument.containsKey("status")) {
             Serial.println("parseObject() failed");
           }else{
-            const String statusText = root["status"];
-            const String symbolName = root["symbolName"];
-            const String rain = root["rain"];
-            const String tempType = root["temptype"];
-            const String temp = root["temp"];
+            const String statusText = jsonDocument["status"];
+            const String symbolName = jsonDocument["symbolName"];
+            const String rain = jsonDocument["rain"];
+            const String tempType = jsonDocument["temptype"];
+            const String temp = jsonDocument["temp"];
+            
+            Serial.println(symbolName);
+            Serial.println(rain);
+            Serial.println(tempType);
+            Serial.println(temp);
             
             char textArr[8];
             temp.toCharArray(textArr, 8);

@@ -4,15 +4,19 @@
  * @web: bouvet.no / nikhil.luthra.no
  */
 
- #include <Servo.h> 
- Servo myServo;
- int servoPosition;
+#include <Servo.h> 
+Servo myServo;
+int servoPosition;
  
 void setup() {
   
   // Oppgave: Attach servo på Pin D3 til servoobjektet
+  
   myServo.attach(D3);
+  
   delay(100);
+  
+  // Oppgave: Sett servoposisjonen til 90.
   myServo.write(90);         
 
   delay(5000);
@@ -20,6 +24,7 @@ void setup() {
 
 void loop() {
   // Oppgave: Kjør servo fra posisjon 0 til 180
+  
   for(servoPosition = 0; servoPosition <= 180; servoPosition += 1) 
   {                                  
     myServo.write(servoPosition);              

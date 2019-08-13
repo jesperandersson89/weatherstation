@@ -8,7 +8,6 @@
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
 #include <WiFiManager.h>  
-#include <ArduinoJson.h>
 
 //Oppgave: inkluder ArduinoJson biblioteket fra Benoît Blanchon
 
@@ -71,7 +70,8 @@ void doRequest(String location){
             Serial.println("parseObject() failed");
           }else{
 
-            //Oppgave: les og skriv ut resultatet fra jsonDocument. Sjekk URLen vi kaller i nettleseren for å se hva du får i retur fra server.
+            //Oppgave: les og skriv ut resultatet fra jsonDocument. 
+            // Se på http://weather.labben.org/api/yr/?location=Norge/Oslo/Oslo/Oslo/ for å se hvilken data du får i retur.
             
             
             

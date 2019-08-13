@@ -5,9 +5,9 @@
  * Lesson 02: Controlling a servo
  */
 
- #include <Servo.h> 
- Servo myServo;
- int servoPosition;
+#include <Servo.h> 
+Servo myServo;
+int servoPosition;
  
 void setup() {
   
@@ -16,7 +16,7 @@ void setup() {
 
   delay(100);
   
-  //Oppgave: sett servo posisjonen til 90.
+  //Oppgave: sett servoposisjonen til 90.
   //OBS: når servoen har flyttet seg til posisjon 90, KUTT STRØMMEN ved å ta ut USB-kabelen.
   //Når du har tatt strømmen i posisjon 90, skal du  skru på den største hvite vingen du finner i servopakken. Denne skal peke rett opp.
   
@@ -28,6 +28,7 @@ void setup() {
 void loop() {
   // Oppgave: Kjør servo fra posisjon 0 til 180
   // Husk delay på ca 15 ms etter hver endring av servoposisjon
+  
   for(servoPosition = 0; servoPosition <= 180; servoPosition += 1) 
   {                                  
     
