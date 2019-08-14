@@ -72,6 +72,8 @@ void moveServo(String symbolName){
     
   }else if(symbolName == "Skyet"){
     
+  }else if(symbolName == "Torden"){
+    
   }else if(symbolName == "Lette regnbyger" || symbolName == "Regnbyger" || symbolName == "Kraftige regnbyger" || symbolName == "Lette regnbyger og torden"){
     
   }
